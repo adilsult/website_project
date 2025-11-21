@@ -1,6 +1,6 @@
 # Adil Project Website - Modern Clothing Store
 
-A minimalist, high-performance e-commerce frontend layout inspired by Apple's design philosophy.
+A minimalist, high-performance e-commerce frontend layout
 
 ## Structure
 - **HTML5**: Semantic structure using BEM naming conventions.
