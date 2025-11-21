@@ -1,0 +1,430 @@
+/* --- Variables & Reset --- */
+:root {
+    --bg-color: #ffffff;
+    --text-primary: #1d1d1f; /* Apple's almost-black */
+    --text-secondary: #86868b;
+    --accent-color: #0066cc;
+    --grey-light: #f5f5f7;
+    --transition: all 0.3s ease;
+    --container-width: 1200px;
+    --nav-height: 48px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased; /* Makes fonts look thinner/crisper on Mac */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    font-size: 12px;
+    letter-spacing: -0.01em;
+}
+
+ul { list-style: none; }
+
+/* --- Utilities --- */
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- Navigation --- */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: var(--nav-height);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: saturate(180%) blur(20px); /* The Glass Effect */
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    transition: var(--transition);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo {
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: -0.5px;
+}
+
+.desktop-nav ul {
+    display: flex;
+    gap: 32px;
+}
+
+.desktop-nav a {
+    color: var(--text-primary);
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.desktop-nav a:hover {
+    opacity: 1;
+}
+ 
+ /* Active link styling for desktop nav */
+ .desktop-nav a.active { color: var(--text); font-weight: 700; }
+
+.nav-icons {
+    display: flex;
+    gap: 20px;
+}
+
+/* --- Hero Section --- */
+.hero {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 0; /* Remove margin so it touches the top of screen */
+    position: relative;
+    
+    /* Background Image Logic */
+    background-image: url("/public/images/header1.jpg");
+    background-size: cover;
+    background-position: center;
+    color: white; /* Text is now whitsse */
+}
+
+/* The dark tint over the image */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); /* 30% black overlay */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2; /* Places text above the overlay */
+    max-width: 600px;
+    padding: 0 20px;
+}
+
+.hero h1 {
+    font-size: 64px;
+    font-weight: 700;
+    letter-spacing: -2px;
+    margin-bottom: 16px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.hero p {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+    font-weight: 400;
+    margin-bottom: 32px;
+}
+
+/* Updated Button Styles for the Hero */
+.hero .btn {
+    padding: 14px 32px;
+    font-size: 16px;
+    backdrop-filter: blur(5px); /* Glass effect on button */
+}
+
+.hero .btn-primary {
+    background-color: white;
+    color: black;
+    border: 1px solid white;
+}
+
+.hero .btn-primary:hover {
+    background-color: transparent;
+    color: white;
+}
+
+
+/* --- Grid/Shop Section --- */
+.grid-section {
+    padding: 100px 20px;
+}
+
+.section-header h2 {
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: -1px;
+    margin-bottom: 60px;
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.card {
+    cursor: pointer;
+}
+
+.card-image {
+    width: 100%;
+    aspect-ratio: 3/4; 
+    background-color: var(--grey-light);
+    margin-bottom: 20px;
+    border-radius: 4px;
+    overflow: hidden; /* Ensures the image doesn't spill out when zoomed */
+    position: relative;
+}
+
+/* NEW: This ensures the image covers the box perfectly like Apple's site */
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Crops image to fill container without distorting */
+    display: block;
+    transition: transform 0.5s ease; /* Smooth zoom on the image itself */
+}
+
+/* Updated Hover Effect */
+.card:hover .card-image img {
+    transform: scale(1.05); /* Zooms the image inside the container */
+}
+
+.card-info h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.card-info p {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+/* --- Footer --- */
+footer {
+    padding: 50px 0;
+    border-top: 1px solid #eee;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+/* --- Generic Page Styles --- */
+.page-content {
+    padding-top: 100px; /* Accounts for fixed header */
+    padding-bottom: 60px;
+    min-height: 80vh;
+}
+
+.page-header {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.page-header h1 {
+    font-size: 32px;
+    font-weight: 600;
+}
+
+/* --- Shop/Category Split Layout --- */
+.split-layout {
+    display: grid;
+    grid-template-columns: 250px 1fr; /* Sidebar 250px, Grid takes rest */
+    gap: 40px;
+}
+
+/* Sidebar */
+.filters-sidebar h4 {
+    font-size: 14px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.filters-sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.filters-sidebar a {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.filters-sidebar a:hover {
+    color: var(--text-primary);
+}
+
+.filter-group {
+    margin-bottom: 40px;
+}
+
+.size-options {
+    display: flex;
+    gap: 10px;
+}
+
+.size-options span {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e5e5e5;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.size-options span:hover {
+    border-color: black;
+}
+
+/* Re-use the product-grid from index, but rename class for clarity */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+/* --- Cart Page --- */
+.cart-title {
+    margin-bottom: 40px;
+}
+
+.cart-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+}
+
+.cart-item {
+    display: flex;
+    gap: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+}
+
+.cart-item .item-img {
+    width: 100px;
+    height: 120px;
+    background: #f5f5f7;
+}
+
+.cart-item .item-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.item-details h3 {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.item-meta {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.quantity-controls button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.cart-summary {
+    background: #f9f9f9;
+    padding: 30px;
+    border-radius: 8px;
+    height: fit-content;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.summary-row.total {
+    font-weight: 600;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.btn-full {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* --- Search Page --- */
+.search-page {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.large-search-input {
+    width: 100%;
+    font-size: 24px;
+    border: none;
+    border-bottom: 2px solid #eee;
+    padding: 10px 0;
+    outline: none;
+}
+
+.large-search-input:focus {
+    border-bottom-color: black;
+}
+
+.search-results {
+    margin-top: 40px;
+    text-align: left;
+}
+
+.label {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+}
+
+.tags {
+    display: flex;
+    gap: 10px;
+}
+
+.tag {
+    padding: 8px 16px;
+    background: #f5f5f7;
+    border-radius: 20px;
+    font-size: 14px;
+}
